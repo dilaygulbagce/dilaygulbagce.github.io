@@ -1,0 +1,90 @@
+<html>
+  <head>
+    <script>
+        var clock, date;
+        function digitalClock(){
+          var today = new Date();
+          var days = ['Pazar', 'Pazartesi', 'Sali', 'Carsamba', 'Persembe', 'Cuma', 'Cumartesi'];
+          var weekDay = days[today.getDay()];
+          var day = today.getDate();
+          var month = today.getMonth()+1;
+          var year = today.getFullYear();
+          date = day + "-" + month + "-" + year + " " + weekDay;
+          if (day < 10 && month < 10) {
+            date = '0' + day + "-" + '0' + month + "-" + year + " " + weekDay;
+          }
+          else if (day < 10) {
+            date = '0' + day + "-" + month + "-" + year + " " + weekDay;
+          }
+          else if (month < 10) {
+            date = day + "-" + '0' + month + "-" + year + " " + weekDay;
+          }
+          document.getElementById("date").innerHTML = date;
+
+          var now = new Date();
+          var hour = now.getHours();
+          var minute = now.getMinutes();
+          var second = now.getSeconds();
+          clock = hour + ':' + minute + ':' + second;
+          if (hour < 10 && minute < 10 && second < 10){
+            clock = '0' + hour + ':' + '0' + minute + ':' + '0' + second;
+          }
+          else if (hour < 10 && minute < 10){
+            clock = '0' + hour + ':' + '0' + minute + ':' + second;
+          }
+          else if (hour < 10 && second < 10){
+            clock = '0' + hour + ':' + minute + ':' + '0' + second;
+          }
+          else if (minute < 10 && second < 10){
+            clock = hour + ':' + '0' + minute + ':' + '0' + second;
+          }
+          else if (hour < 10){
+            clock = '0' + hour + ':' + minute + ':' + second;
+          }
+          else if (minute < 10){
+            clock = hour + ':' + '0' + minute + ':' + second;
+          }
+          else if (second < 10){
+            clock = hour + ':' + minute + ':' + '0' + second;
+          }
+          document.getElementById("clock").innerHTML = clock;
+          setTimeout("digitalClock()", 1000);
+        }
+    </script>
+    <style>
+      @font-face {
+        font-family: 'digital-clock-font';
+        src: url('digital-7.ttf');
+      }
+      .main {
+        height: 150px;
+        width: 400px;
+        background-color: black;
+        border-radius: 7px;
+        text-align: center;
+        margin: auto;
+        position: relative;
+        top: 50%;
+        transform: perspective(1px) translateY(-50%);
+      }
+      #date {
+        font-size: 23px;
+        color: white;
+        padding-top: 15px;
+        font-family:'digital-clock-font';
+      }
+      #clock {
+        font-size: 99px;
+        color: white;
+        padding-top: 5px;
+        font-family:'digital-clock-font';
+      }
+    </style>
+  </head>
+  <body onLoad = "digitalClock()">
+    <div class = "main">
+      <div id = "date"></div>
+      <div id = "clock"></div>
+    </div>
+  </body>
+</html>
